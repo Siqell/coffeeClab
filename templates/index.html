@@ -1,0 +1,192 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Coffee clab</title>
+
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+	<div class="contain">
+		<div class="head" id="head">
+			<h1>Coffee Clab</h1>
+			<p>Насладитесь вкусом настоящего кофе</p>
+			<ul>
+				<li><a href="#catalog">Каталог</a></li>
+				<li><a href="#reviews">Отзывы</a></li>
+				<li><a href="#cart">Корзина</a></li>
+				<li><a href="#contacts">Контакты</a></li>
+			</ul>
+			<ul class="fix-menu">
+				<li><a href="#catalog">Каталог</a></li>
+				<li><a href="#reviews">Отзывы</a></li>
+				<li><a href="#cart">Корзина</a></li>
+				<li><a href="#contacts">Контакты</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="contain" style="background-color: #c0a477;">
+		<div class="categories">
+			<ul>
+				<li>
+					<p>Кофе в зернах</p>
+					<div><img src="{% static 'images/coffee-jar.png' %}" alt=""><a href="#coffee-grain"></a></div>
+				</li>
+				<li>
+					<p>Сиропы</p>
+					<div><img src="{% static 'images/syrop.png' %}" alt=""><a href="#syrop"></a></div>
+				</li>
+				<li>
+					<p>Сувениры</p>
+					<div><img src="{% static 'images/coffee-cup.png' %}" alt=""><a href="#suvenir"></a></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="contain">
+		<div class="catalog" id="catalog">
+			<!--<img src="{% static 'images/coffee-grain.png' %}" alt="">-->
+			
+			<h1 id="coffee-grain">Кофе в зернах</h1>
+			<ul>
+				{% for product in coffee %}
+					<li>
+						<form action='{% url "main:cart_add" %}' method="POST">
+							{% csrf_token %}
+							<h1>{{product.name}}</h1>
+							<p>{{product.description}}</p>
+							<input type="submit" value="{{product.price}}р. /100гр.">
+							<input type="hidden" name="product_id" value="{{product.id}}">
+						</form>
+					</li>
+				{% endfor %}
+			</ul>
+			<h1 id="syrop">Сироп</h1>
+			<ul>
+				{% for product in syrop %}
+					<li>
+						<form action='{% url "main:cart_add" %}' method="POST">
+							{% csrf_token %}
+							<h1>{{product.name}}</h1>
+							<p>{{product.description}}</p>
+							<input type="submit" value="{{product.price}}р. /100гр.">
+							<input type="hidden" name="product_id" value="{{product.id}}">
+						</form>
+					</li>
+				{% endfor %}
+			</ul>
+			<h1 id="suvenir">Сувениры</h1>
+			<ul>
+				{% for product in suvenir %}
+					<li>
+						<form action='{% url "main:cart_add" %}' method="POST">
+							{% csrf_token %}
+							<h1>{{product.name}}</h1>
+							<p>{{product.description}}</p>
+							<input type="submit" value="{{product.price}}р. /100гр.">
+							<input type="hidden" name="product_id" value="{{product.id}}">
+						</form>
+					</li>
+				{% endfor %}
+			</ul>
+				
+			
+		</div>
+	</div>
+	<div class="contain" style="background-color: #c0a477;">
+		<div class="reviews" id="reviews">
+			<h1>Напишите свой отзыв</h1>
+			<form action="{% url 'main:create_review' %}" method="POST">
+				{% csrf_token %}
+				<p>Имя</p>
+				{{form_review.username_client}}
+				<p>Отзыв</p>
+				{{form_review.review}}
+				<input type="submit" value="Отправить">
+			</form>
+			<ul>
+				{% for rev in four_rev %}
+				<li>
+					<h4>{{ rev.username_client }}</h4>
+					<span>{{ rev.review }}</span>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="contain">
+		<div class="cart" id="cart">
+			<h1>Корзина товаров</h1>
+			{% if cart_products %}
+				<div class="cart-contain">
+					<ul>
+						<li>Товар</li>
+						<li>Количество</li>
+						<li>Цена</li>
+					</ul>
+						{% for product in cart_products %}
+
+							<ul>
+								<li>{{product.name}}</li>
+								<li class="count">
+									<form action="{% url 'main:cart_minus' %}" method="POST">
+										{% csrf_token %}
+										<input type="submit" value="<">
+										<input type="hidden" value="{{product.id}}" name='product_id'>
+									</form>
+
+									<p>{{product.quantity}}</p>
+
+									<form action="{% url 'main:cart_add' %}" method="POST">
+										{% csrf_token %}
+										<input type="submit" value=">">
+										<input type="hidden" value="{{product.id}}" name='product_id'>
+									</form>
+								</li>
+								<li>{{product.price}}</li>
+							</ul>
+						{% endfor %}
+						<ul class="total_price">
+							<li>Общая стоимость:</li>
+							<li></li>
+							<li>{{ total_price }}</li>
+						</ul>
+						
+
+
+						
+					<form action="{% url 'main:create_order' %}" method="POST">
+						{% csrf_token %}
+						<p>Введите адрес доставки: </p>
+						<input type="text" name="adres" required>
+						<input type="hidden" name="total_price" value="{{total_price}}">
+						<input class="button" type="submit" value="Оформить заказ">
+					</form>
+				</div>
+			{% else %}
+				<p>Тут пусто</p>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="contain" style="background-color: #c0a477;">
+		<div class="foot">
+			<ul class="contacts" id="contacts">
+				<li><a href="tel:+79897645323">телефон : +7(989)764-53-23</a></li>
+				<li><a href="https://www.google.com/maps/place/%D1%83%D0%BB.+%D0%93%D0%B0%D0%B3%D0%B0%D1%80%D0%B8%D0%BD%D0%B0,+3,+%D0%A7%D0%B5%D0%B1%D0%BE%D0%BA%D1%81%D0%B0%D1%80%D1%8B,+%D0%A7%D1%83%D0%B2%D0%B0%D1%88%D1%81%D0%BA%D0%B0%D1%8F+%D0%A0%D0%B5%D1%81%D0%BF.,+428003/@56.1230295,47.2520506,18.08z/data=!4m6!3m5!1s0x415a3792ce5b0eb5:0x834eeb00d938c0c5!8m2!3d56.1231285!4d47.2511003!16s%2Fg%2F11b8v77p2f?entry=ttu">адрес : ул. Гагарина, 3, Чебоксары, Чувашская Респ., 428003</a></li>
+			</ul>
+			<ul class="messengers">
+				<li><a href="https://web.telegram.org/k/"><img src="{% static 'images/tg.png' %}" alt=""></a></li>
+				<li><a href="https://www.whatsapp.com/?lang=ru_RU"><img src="{% static 'images/wapp.png' %}" alt=""></a></li>
+				<li><a href="https://vk.com"><img src="{% static 'images/vk.png' %}" alt=""></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="up"><a href="#head">Вверх</a></div>
+</body>
+
+<script src="{% static 'js/script.js' %}"></script>
+</html>

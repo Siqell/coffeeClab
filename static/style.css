@@ -1,0 +1,641 @@
+/* Reset and base styles  */
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Links */
+
+a, a:link, a:visited  {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: none;
+}
+
+/* Common */
+
+aside, nav, footer, header, section, main {
+	display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-size: inherit;
+	font-weight: inherit;
+}
+
+ul, ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+img, svg {
+	max-width: 100%;
+	height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+
+input, textarea, button, select {
+	font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+button, input[type="submit"] {
+    display: inline-block;
+    box-shadow: none;
+    background-color: transparent;
+    background: none;
+    cursor: pointer;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+label {
+	cursor: pointer;
+}
+
+legend {
+	display: block;
+}
+
+
+@font-face {
+	font-family: "Vivaldi";
+	src: url(fonts/Vivaldi script.ttf);
+}
+
+@font-face {
+	font-family: "Candara";
+	src: url(fonts/candara.ttf);
+}
+
+@font-face {
+	font-family: "Candara-bold";
+	src: url(fonts/Candara-bold.ttf);
+}
+
+body{
+	background-image: url(images/bg.png);
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+}
+
+
+
+.contain{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+/* #573e1f */
+.head{
+	height: 494px;
+	width: 1100px;
+	display: flex;
+	flex-direction: column;
+	color: #79572c;
+	align-items: flex-end;
+}
+
+.head h1{
+	font-family: 'Vivaldi';
+	font-size: 250px;
+	text-align: end;
+	cursor: default;
+}
+
+.head h1::after{
+	content: '';
+	display: block;
+	position: relative;
+	height: 2px;
+	width: 700px;
+	bottom: 60px;
+	background-color: #79572c;
+	right: 460px;
+}
+
+.head h1::before{
+	content: '';
+	display: block;
+	position: relative;
+	height: 2px;
+	width: 640px;
+	top: 246px;
+	background-color: #79572c;
+	left: 350px;
+}
+
+
+
+.head p{
+	font-size: 45px;
+	text-align: end;
+	cursor: default;
+	font-family: 'Candara';
+}
+
+.head ul{
+	display: flex;
+	width: 620px;
+	justify-content: space-between;
+	margin-top: 60px;
+}
+
+
+
+.head ul li{
+	background-color: #79572c;
+	border-radius: 33px;
+	transition: .2s;
+	width: 140px;
+	height: 50px;
+}
+
+.head ul li:hover{
+	box-shadow: 0px 0px 10px #573e1f;
+	cursor: pointer;
+	scale: 1.02;
+}
+
+.head ul li a{
+	display: block;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	line-height: 50px;
+	color: #a38558;
+	font-family: 'Candara';
+	font-size: 30px;
+	text-shadow: 0px 0px 3px #3e3322;
+	transition: .2s;
+}
+
+.head ul li:hover a{
+	text-shadow: 0px 0px 6px #3e3322;
+}
+
+
+.head .fix-menu{
+	position: fixed;
+	right: -180px;
+	top: -360px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: .4s;
+}
+
+.head .fix-menu li{
+	margin: 12px 0px;
+	box-shadow: 0px 0px 10px #a38558;
+}
+
+.active{
+	top: 0px!important;
+}
+
+
+.categories{
+	height: 494px;
+	width: 80%;
+
+}
+
+.categories ul{
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.categories ul li{
+	height: 500px;
+	width: 270px;
+	font-size: 40px;
+	color: #573e1f;
+	text-align: center;
+	font-family: "Candara";
+}
+
+.categories ul li p{
+	margin: 30px 0px;
+}
+.categories ul li div{
+	background-color: #a38558;
+	height: 270px;
+	width: 270px;
+	padding: 30px;
+	border-radius: 25%;
+	transition: .2s;
+}
+
+.categories ul li div a{
+	position: relative;
+	top: -210px;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.categories ul li div:hover{
+	cursor: pointer;
+	box-shadow: 0px 0px 22px #573e1f;
+}
+
+.categories ul li div img{
+	height: 100%;
+	object-fit: cover;
+	filter: drop-shadow(0px 0px 5px #573e1f);
+	transition: .2s;
+}
+
+.categories ul li div:hover img{
+	scale: 1.06;
+	filter: drop-shadow(0px 0px 15px #573e1f);
+}
+
+.catalog{
+	width: 100%;
+	padding: 30px 0px 140px 0px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.catalog img{
+	width: 230px;
+	height: 230px;
+	position: absolute;
+	transform: translateY(-120px) ;
+	filter: blur(0.5px);
+	opacity: .7;
+}
+
+.catalog>h1{
+	font-size: 40px;
+	font-family: "Candara";
+	position: relative;
+	top: 80px;
+	color: #292217;
+}
+
+.catalog ul{
+	width: 80%;
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	margin: 30px 0px;
+}
+
+
+
+.catalog ul li{
+
+	width: 30%;
+	height: 400px;
+	padding: 20px;
+	cursor: default;
+}
+.catalog ul li:nth-child(3n+2){
+	position: relative;
+	top: 80px;
+}
+
+.catalog ul li form{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.catalog ul li form h1{
+	font-size: 25px;
+	font-family: "Candara-bold";
+	color: #292217;
+}
+
+.catalog ul li form p{
+	font-size: 20px;
+	font-family: "Candara";
+}
+
+
+
+.catalog ul li form input[type = 'submit']{
+	display: block;
+	font-family: "Candara";
+	color: #c0a477;
+	font-size: 20px;
+	padding: 8px;
+	margin-top: 10px;
+	border-radius: 25px;
+	width: 50%;
+	background-color: #79572c;
+	text-shadow: 0px 0px 3px #292217;
+	transition: .2s;
+}
+
+.catalog ul li form input[type = 'submit']:hover{
+	text-shadow: 0px 0px 10px #292217;
+	box-shadow: 0px 0px 10px #79572c;
+	scale: 1.02;
+	cursor: pointer;
+}
+
+.reviews{
+	display: flex;
+	width: 80%;
+	min-height: 500px;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	font-family: "Candara";
+}
+
+.reviews h1{
+	display: block;
+	padding: 40px 0px;
+	font-size: 40px;
+	color: #573e1f;
+}
+
+
+.reviews form{
+	width: 320px;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	color: #573e1f;
+}
+
+.reviews form input[type='text']{
+	border-radius: 20px;
+	border: none;
+	background-color: #ffffff30;
+	border-bottom: solid 1px #292217;
+	padding: 8px;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+	margin: 14px 0px;
+}
+
+.reviews form textarea{
+	border-radius: 20px;
+	border: none;
+	background-color: #ffffff30;
+	border-bottom: solid 1px #292217;
+	padding: 8px;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+	margin: 14px 0px;
+	height: 70px;
+}
+
+.reviews form input[type='submit']{
+	font-family: 'Comfortaa', cursive;
+	border-radius: 20px;
+	border: solid 2px #573e1f;
+	padding: 8px;
+	background-color: rgba(0, 0, 0, 0);
+	transition: .3s;
+}
+
+.reviews form input[type='submit']:hover{
+	background-color: #ffffff30;
+	cursor: pointer;
+}
+
+.reviews ul{
+	width: 100%;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.reviews ul li{
+	padding: 4px;
+	background-color: #ffffff30;
+	width: 90%;
+	margin: 30px 0px;
+	border-radius: 10px;
+	border: solid 2px #573e1f;
+	width: max-content;
+}
+
+.reviews ul li h4{
+	padding: 6px;
+	font-weight: 700;
+}
+
+.reviews ul li span{
+	padding: 6px;
+	text-align: center;
+	line-height: 180%;
+}
+
+
+.cart{
+	display: flex;
+	width: 70%;
+	min-height: 300px;
+	flex-direction: column;
+	align-items: center;
+	font-family: "Candara";
+	padding: 30px 0px;
+}
+
+.cart-contain{
+	width: 80%;
+	background-color: #c0a477;
+	border-radius: 25px;
+	padding: 20px;
+
+}
+.cart h1{
+	display: block;
+	padding: 40px 0px;
+	font-size: 40px;
+	color: #292217;
+	font-family: 'Candara';
+}
+
+.cart ul{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin: 30px 0px;
+
+}
+
+.cart ul li{
+	font-family: 'Candara';
+	font-size: 20px;
+
+}
+
+.cart ul li:nth-child(1){
+	width: 76%;
+	text-align: left;
+}
+.cart ul li:nth-child(2){
+	width: 12%;
+	text-align: center;
+}
+.cart ul li:nth-child(3){
+	width: 12%;
+	text-align: right;
+}
+
+.cart ul li.count {
+	display: flex;
+	justify-content: center;
+}
+.cart ul li.count form, p{
+	margin: 0px 10px;
+}
+
+.cart ul li.count form input{
+	font-size: 20px;
+	font-family: "Candara-bold";
+}
+
+.cart>p{
+	font-size: 30px;
+	font-family: "Candara-bold";
+	color: #292217;
+}
+
+.foot{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 200px;
+	justify-content: center;
+}
+
+.foot .contacts{
+	width: 60%;
+	display: flex;
+	justify-content: space-evenly;
+	height: 50%;
+	align-items: center;
+}
+
+.foot .contacts li a{
+	color: #573e1f;
+	font-size: 20px;
+
+}
+
+.foot .contacts li a:hover{
+	color: #2f2111;
+
+}
+
+.foot .messengers{
+	width: 60%;
+	display: flex;
+	height: 50%;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.foot .messengers li{
+	width: 60px;
+	height: 60px;
+}
+.foot .messengers li img{
+	height: 100%;
+	width: 100%;
+}
+
+.up{
+	font-size: 22px;
+	font-family: "Candara";
+	position: fixed;
+	bottom: -50px;
+	right: 50px;
+	transition: .3s;
+}
+.up a{
+	color: #2f2111;
+}
+.visable{
+	bottom: 50px;
+}
+.cart-contain form{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.button{
+	padding: 8px;
+	background-color: rgba(0, 0, 0, 0);
+	font-family: 'Comfortaa', cursive;
+	border-radius: 20px;
+	border: solid 2px #573e1f;
+	color: #573e1f;
+	transition: .3s;
+}
+
+.total_price{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0px;
+}
+
+.cart-contain form p {
+	font-size: 20px;
+	line-height: 40px;
+	margin: 0;
+}
+
+.cart-contain form input[type = 'text']{
+	background-color: #ffffff30;
+	border-radius: 25px;
+	padding: 0px 8px;
+	width: 50%;
+}
+
+.button:hover{
+	background-color: #ffffff30;
+
+}
